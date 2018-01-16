@@ -54,7 +54,8 @@ public final class PhotoEditorViewController: UIViewController {
     
     // list of controls to be hidden
     public var hiddenControls : [control] = []
-    
+    public var textViewFontFamilly : UIFont?
+
     var stickersVCIsVisible = false
     var drawColor: UIColor = UIColor.black
     var textColor: UIColor = UIColor.white
@@ -81,7 +82,9 @@ public final class PhotoEditorViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.setImageView(image: image!)
-        
+        if(textViewFontFamilly == nil){
+            textViewFontFamilly  =  UIFont(name: "Helvetica", size: 30)
+        }
         deleteView.layer.cornerRadius = deleteView.bounds.height / 2
         deleteView.layer.borderWidth = 2.0
         deleteView.layer.borderColor = UIColor.white.cgColor
