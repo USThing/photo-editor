@@ -3,7 +3,7 @@
 ## Features
 - [x] Cropping 
 - [x] Adding images -Stickers-
-- [x] Adding Text with colors
+- [x] Adding Text with colors and custom fonts
 - [x] Drawing wihtcolors
 - [x] Scaling and rotating objects 
 - [x] Deleting objects 
