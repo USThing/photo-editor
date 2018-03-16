@@ -17,10 +17,10 @@ public final class PhotoEditorViewController: UIViewController {
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     //To hold the drawings and stickers
     @IBOutlet weak var canvasImageView: UIImageView!
-
+    
     @IBOutlet weak var topToolbar: UIView!
     @IBOutlet weak var bottomToolbar: UIView!
-
+    
     @IBOutlet weak var topGradient: UIView!
     @IBOutlet weak var bottomGradient: UIView!
     
@@ -55,9 +55,12 @@ public final class PhotoEditorViewController: UIViewController {
     // list of controls to be hidden
     public var hiddenControls : [control] = []
     public var textViewFontFamilly : UIFont?
-
+    
     var stickersVCIsVisible = false
     var drawColor: UIColor = UIColor.black
+    public var drawWidth: CGFloat =  5.0
+    public var drawOpacity: CGFloat =  1.0
+    
     var textColor: UIColor = UIColor.white
     var isDrawing: Bool = false
     var lastPoint: CGPoint!
@@ -72,7 +75,7 @@ public final class PhotoEditorViewController: UIViewController {
     
     
     var stickersViewController: StickersViewController!
-
+    
     //Register Custom font before we load XIB
     public override func loadView() {
         registerFont()
@@ -145,6 +148,7 @@ public final class PhotoEditorViewController: UIViewController {
 extension PhotoEditorViewController: ColorDelegate {
     func didSelectColor(color: UIColor) {
         if isDrawing {
+            color.withAlphaComponent(0.5);
             self.drawColor = color
         } else if activeTextView != nil {
             activeTextView?.textColor = color
