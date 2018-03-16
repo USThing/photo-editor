@@ -66,14 +66,14 @@ extension PhotoEditorViewController {
             context.addLine(to: CGPoint(x: toPoint.x, y: toPoint.y))
             // 3
             context.setLineCap( CGLineCap.round)
-            context.setLineWidth(drawWidth)
+            context.setLineWidth(drawWidth!)
             context.setStrokeColor(drawColor.cgColor)
             context.setBlendMode( CGBlendMode.normal)
             // 4
             context.strokePath()
             // 5
             canvasImageView.image = UIGraphicsGetImageFromCurrentImageContext()
-            canvasImageView.alpha = drawOpacity
+            canvasImageView.alpha = drawOpacity!
             
             UIGraphicsEndImageContext()
         }

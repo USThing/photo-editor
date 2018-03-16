@@ -58,8 +58,8 @@ public final class PhotoEditorViewController: UIViewController {
     
     var stickersVCIsVisible = false
     var drawColor: UIColor = UIColor.black
-    public var drawWidth: CGFloat =  5.0
-    public var drawOpacity: CGFloat =  1.0
+    public var drawWidth: CGFloat?
+    public var drawOpacity: CGFloat?
     
     var textColor: UIColor = UIColor.white
     var isDrawing: Bool = false
@@ -88,6 +88,8 @@ public final class PhotoEditorViewController: UIViewController {
         if(textViewFontFamilly == nil){
             textViewFontFamilly  =  UIFont(name: "Helvetica", size: 30)
         }
+        if(drawWidth == nil){ drawWidth = 5.0 }
+        if(drawOpacity == nil){  drawOpacity = 1.0}
         deleteView.layer.cornerRadius = deleteView.bounds.height / 2
         deleteView.layer.borderWidth = 2.0
         deleteView.layer.borderColor = UIColor.white.cgColor
