@@ -3,7 +3,7 @@
 ## Features
 - [x] Cropping 
 - [x] Adding images -Stickers-
-- [x] Adding Text with colors
+- [x] Adding Text with colors and custom fonts
 - [x] Drawing wihtcolors
 - [x] Scaling and rotating objects 
 - [x] Deleting objects 
@@ -11,11 +11,12 @@
 - [x] Cool animations 
 - [x] Uses iOS Taptic Engine feedback 
 
-## New Features in V 0.4 
+## New Features in V 0.5
 
-Thanks to https://github.com/sprint84/PhotoCropEditor 
+Added custom fonts
+added opacity selection for drawing
+added selection for width of drawing line 
 
-It now supports Cropping 💃🏻
 
 ## Installation
 

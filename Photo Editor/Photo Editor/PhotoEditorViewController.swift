@@ -17,10 +17,10 @@ public final class PhotoEditorViewController: UIViewController {
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     //To hold the drawings and stickers
     @IBOutlet weak var canvasImageView: UIImageView!
-
+    
     @IBOutlet weak var topToolbar: UIView!
     @IBOutlet weak var bottomToolbar: UIView!
-
+    
     @IBOutlet weak var topGradient: UIView!
     @IBOutlet weak var bottomGradient: UIView!
     
@@ -54,9 +54,13 @@ public final class PhotoEditorViewController: UIViewController {
     
     // list of controls to be hidden
     public var hiddenControls : [control] = []
+    public var textViewFontFamilly : UIFont?
     
     var stickersVCIsVisible = false
     var drawColor: UIColor = UIColor.black
+    public var drawWidth: CGFloat?
+    public var drawOpacity: CGFloat?
+    
     var textColor: UIColor = UIColor.white
     var isDrawing: Bool = false
     var lastPoint: CGPoint!
@@ -71,7 +75,7 @@ public final class PhotoEditorViewController: UIViewController {
     
     
     var stickersViewController: StickersViewController!
-
+    
     //Register Custom font before we load XIB
     public override func loadView() {
         registerFont()
@@ -81,7 +85,11 @@ public final class PhotoEditorViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.setImageView(image: image!)
-        
+        if(textViewFontFamilly == nil){
+            textViewFontFamilly  =  UIFont(name: "Helvetica", size: 30)
+        }
+        if(drawWidth == nil){ drawWidth = 5.0 }
+        if(drawOpacity == nil){  drawOpacity = 1.0}
         deleteView.layer.cornerRadius = deleteView.bounds.height / 2
         deleteView.layer.borderWidth = 2.0
         deleteView.layer.borderColor = UIColor.white.cgColor
@@ -93,11 +101,11 @@ public final class PhotoEditorViewController: UIViewController {
         self.view.addGestureRecognizer(edgePan)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow),
-                                               name: .UIKeyboardDidShow, object: nil)
+                                               name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
-                                               name: .UIKeyboardWillHide, object: nil)
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillChangeFrame(_:)),
-                                               name: .UIKeyboardWillChangeFrame, object: nil)
+                                               name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
         
         configureCollectionView()
@@ -142,6 +150,7 @@ public final class PhotoEditorViewController: UIViewController {
 extension PhotoEditorViewController: ColorDelegate {
     func didSelectColor(color: UIColor) {
         if isDrawing {
+            color.withAlphaComponent(0.5);
             self.drawColor = color
         } else if activeTextView != nil {
             activeTextView?.textColor = color

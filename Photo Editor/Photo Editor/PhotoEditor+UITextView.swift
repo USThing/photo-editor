@@ -25,8 +25,8 @@ extension PhotoEditorViewController: UITextViewDelegate {
         lastTextViewTransCenter = textView.center
         lastTextViewFont = textView.font!
         activeTextView = textView
-        textView.superview?.bringSubview(toFront: textView)
-        textView.font = UIFont(name: "Helvetica", size: 30)
+        textView.superview?.bringSubviewToFront(textView)
+        textView.font = self.textViewFontFamilly;
         UIView.animate(withDuration: 0.3,
                        animations: {
                         textView.transform = CGAffineTransform.identity
